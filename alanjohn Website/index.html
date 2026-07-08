@@ -146,28 +146,11 @@
     </div>
 
     <div class="events-grid">
-      <!-- UPCOMING -->
+      <!-- UPCOMING (aus Supabase geladen: script.js -> loadUpcomingEvents) -->
       <div class="events-col">
         <h3 class="events-label">Upcoming</h3>
-        <ul class="event-list">
-          <li class="event upcoming">
-            <div class="event-date"><span class="d">31</span><span class="m">Jul</span></div>
-            <div class="event-info">
-              <strong>Ritter Butzke</strong>
-              <span>Aqua Höfe, Berlin</span>
-            </div>
-            <a class="event-cta" href="https://uniparty.ticket.io/lsklFMTL/" target="_blank" rel="noopener">Tickets</a>
-          </li>
-          <!-- Beispiel-Eintrag (bearbeiten/duplizieren):
-          <li class="event upcoming">
-            <div class="event-date"><span class="d">12</span><span class="m">Sep</span></div>
-            <div class="event-info">
-              <strong>Club Night, Berlin</strong>
-              <span>Venue · Stadt · Doors 23:00</span>
-            </div>
-            <a class="event-cta" href="#tickets">Tickets</a>
-          </li>
-          -->
+        <ul class="event-list" id="upcomingEventList">
+          <li class="event-empty">Lade Events …</li>
         </ul>
       </div>
 
@@ -286,6 +269,7 @@
       <div class="form-footer">
         <button type="submit" class="btn btn-primary">Anfrage senden</button>
       </div>
+      <p class="booking-status" id="bookingStatus" role="status" hidden></p>
     </form>
   </section>
 

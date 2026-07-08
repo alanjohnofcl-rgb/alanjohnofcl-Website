@@ -348,6 +348,14 @@ a { color: inherit; text-decoration: none; }
   transition: color 0.25s;
 }
 .event-cta:hover { color: #fff; }
+.event-empty {
+  padding: 22px 4px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+}
 
 /* ---------- LIGHTBOX ---------- */
 .lightbox { position: fixed; inset: 0; z-index: 200; display: grid; place-items: center; padding: 24px; }
@@ -464,6 +472,9 @@ a { color: inherit; text-decoration: none; }
 .booking-form textarea { resize: vertical; }
 .booking-form .full { width: 100%; }
 .form-footer { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; margin-top: 8px; }
+.booking-status { font-size: 0.8rem; margin-top: -4px; }
+.booking-status.ok { color: #3ddc84; }
+.booking-status.error { color: #ff6b6b; }
 .form-note { color: var(--muted); }
 
 /* ---------- FOOTER ---------- */
