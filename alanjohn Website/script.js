@@ -1,6 +1,34 @@
 // Footer year
 document.getElementById("year").textContent = new Date().getFullYear();
 
+// Hero video autoplay fallback. Some mobile browsers (data saver mode,
+// low power mode, slow connections) silently skip the native "autoplay"
+// attribute even when muted, and never retry on their own. Explicitly
+// trigger playback, retry once the video is actually ready, and fall
+// back to starting it on the first user interaction if it's still paused.
+const heroVideo = document.querySelector(".hero-video");
+if (heroVideo) {
+  const tryPlayHeroVideo = () => {
+    const playPromise = heroVideo.play();
+    if (playPromise !== undefined) playPromise.catch(() => {});
+  };
+
+  tryPlayHeroVideo();
+  heroVideo.addEventListener("loadeddata", tryPlayHeroVideo);
+  heroVideo.addEventListener("canplay", tryPlayHeroVideo);
+
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden && heroVideo.paused) tryPlayHeroVideo();
+  });
+
+  const resumeHeroVideoOnInteraction = () => {
+    if (heroVideo.paused) tryPlayHeroVideo();
+  };
+  ["pointerdown", "touchstart", "keydown", "scroll"].forEach((evt) =>
+    document.addEventListener(evt, resumeHeroVideoOnInteraction, { passive: true, once: true })
+  );
+}
+
 // Booking form -> sends the request to a Supabase Edge Function, which
 // emails the DJ with an Accept/Decline link for each request. Accepting
 // automatically adds the event to "Upcoming Events" below.
