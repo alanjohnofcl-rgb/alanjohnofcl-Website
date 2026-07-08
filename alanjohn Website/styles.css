@@ -528,6 +528,27 @@ a { color: inherit; text-decoration: none; }
   margin-top: 8px;
 }
 
+/* ---------- LEGAL ---------- */
+.legal-body { max-width: 720px; margin: 0 auto; }
+.legal-body h3 {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 1.3rem;
+  letter-spacing: 0.02em;
+  color: var(--text);
+  margin: 44px 0 14px;
+}
+.legal-body h3:first-child { margin-top: 0; }
+.legal-body p {
+  color: var(--muted);
+  font-size: 0.95rem;
+  font-weight: 300;
+  line-height: 1.7;
+  margin-bottom: 14px;
+}
+.legal-body p strong { color: var(--text); font-weight: 400; }
+.legal-body a { color: var(--accent); }
+
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 760px) {
   .nav-links a:not(.nav-cta) { display: none; }
