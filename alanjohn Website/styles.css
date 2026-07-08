@@ -364,6 +364,23 @@ a { color: inherit; text-decoration: none; }
   text-transform: uppercase;
   letter-spacing: 0.2em;
 }
+.event[hidden] { display: none; }
+.events-more-btn {
+  display: block;
+  width: 100%;
+  margin-top: 18px;
+  padding: 13px 20px;
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font-family: var(--meta);
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 0.62rem;
+  cursor: pointer;
+  transition: border-color 0.25s, color 0.25s;
+}
+.events-more-btn:hover { border-color: var(--text); color: var(--text); }
 
 /* ---------- LIGHTBOX ---------- */
 .lightbox { position: fixed; inset: 0; z-index: 200; display: grid; place-items: center; padding: 24px; }

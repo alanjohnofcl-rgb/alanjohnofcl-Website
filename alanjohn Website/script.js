@@ -275,3 +275,19 @@ lightbox.addEventListener("click", (e) => {
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape" && !lightbox.hidden) closeLightbox();
 });
+
+// "Weitere anzeigen" toggle for the long Past Events list
+const pastEventsToggle = document.getElementById("pastEventsToggle");
+if (pastEventsToggle) {
+  const hiddenPastEvents = pastEventsToggle
+    .closest(".events-col")
+    .querySelectorAll(".event.past[hidden]");
+  pastEventsToggle.addEventListener("click", () => {
+    const expand = pastEventsToggle.getAttribute("aria-expanded") !== "true";
+    hiddenPastEvents.forEach((el) => (el.hidden = !expand));
+    pastEventsToggle.setAttribute("aria-expanded", String(expand));
+    pastEventsToggle.textContent = expand
+      ? "Weniger anzeigen"
+      : `Weitere anzeigen (+${hiddenPastEvents.length})`;
+  });
+}
