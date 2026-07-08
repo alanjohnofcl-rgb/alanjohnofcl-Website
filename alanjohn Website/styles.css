@@ -549,6 +549,38 @@ a { color: inherit; text-decoration: none; }
 .legal-body p strong { color: var(--text); font-weight: 400; }
 .legal-body a { color: var(--accent); }
 
+/* ---------- COOKIE BANNER ---------- */
+.cookie-banner {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 500;
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+  padding: 22px clamp(20px, 5vw, 40px);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.cookie-banner p {
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 300;
+  line-height: 1.6;
+  max-width: 640px;
+  margin: 0;
+}
+.cookie-banner p a { color: var(--accent); }
+.cookie-banner-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+.cookie-banner-actions .btn { padding: 12px 22px; }
+@media (max-width: 640px) {
+  .cookie-banner { flex-direction: column; align-items: stretch; text-align: center; }
+  .cookie-banner-actions { justify-content: center; }
+}
+
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 760px) {
   .nav-links a:not(.nav-cta) { display: none; }
