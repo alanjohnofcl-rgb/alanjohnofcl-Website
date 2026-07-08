@@ -150,24 +150,69 @@ window.addEventListener("scroll", onScroll, { passive: true });
 // Bilder hinzufügen: einfach den passenden "images"-Array unten befüllen,
 // z. B. images: ["images/events/tomorrowland-1.jpg", "images/events/tomorrowland-2.jpg"]
 const EVENT_GALLERIES = {
-  tomorrowland: {
-    title: "Tomorrowland",
-    sub: "Boom, Belgien · Besucht",
+  "gardeneden-2026": {
+    title: "GardenEden",
+    sub: "Goldenstedt · 30.05.2026 · Aufgelegt",
     images: [],
   },
-  parookaville: {
-    title: "Parookaville",
-    sub: "Weeze, Deutschland · Besucht",
+  "studi-party-ritter-butzke-apr26": {
+    title: "Studi Party",
+    sub: "Ritter Butzke (Aqua Höfe), Berlin · 25.04.2026 · Aufgelegt",
     images: [],
   },
-  ibiza: {
-    title: "Ibiza",
-    sub: "Ushuaia, Ibiza · Besucht",
+  "studi-party-festsaal-kreuzberg": {
+    title: "Studi Party",
+    sub: "Festsaal Kreuzberg, Berlin · 14.03.2026 · Aufgelegt",
     images: [],
   },
-  "amsterdam-music-festival": {
-    title: "Amsterdam Music Festival",
-    sub: "Amsterdam, Niederlande · Besucht",
+  "the-sharp-london": {
+    title: "The Sharp",
+    sub: "London · 06.02.2026 · Aufgelegt",
+    images: [],
+  },
+  "studi-party-ritter-butzke-dec25": {
+    title: "Studi Party",
+    sub: "Ritter Butzke (Aqua Höfe), Berlin · 28.12.2025 · Aufgelegt",
+    images: [],
+  },
+  "hertha-bsc-party": {
+    title: "Hertha BSC Party",
+    sub: "Berlin · 09.12.2025 · Aufgelegt",
+    images: [],
+  },
+  "kinderparty-bergwerk": {
+    title: "Kinderparty",
+    sub: "Club Bergwerk, Potsdam · 18.10.2025 · Aufgelegt",
+    images: [],
+  },
+  "sommerparty-hangelsberg": {
+    title: "Sommerparty",
+    sub: "Hangelsberg · 25.07.2025 · Aufgelegt",
+    images: [],
+  },
+  "abi-ball-hamburg": {
+    title: "Abi Ball",
+    sub: "Sportschule, Hamburg · 19.07.2025 · Aufgelegt",
+    images: [],
+  },
+  "gardeneden-2025": {
+    title: "GardenEden",
+    sub: "Goldenstedt · 17.05.2025 · Aufgelegt",
+    images: [],
+  },
+  "sommerparty-lindenpark": {
+    title: "Sommerparty",
+    sub: "Lindenpark, Potsdam · 11.05.2025 · Aufgelegt",
+    images: [],
+  },
+  "winterparty-lindenpark": {
+    title: "Winterparty",
+    sub: "Lindenpark, Potsdam · 08.02.2025 · Aufgelegt",
+    images: [],
+  },
+  "sio-festival-berlin": {
+    title: "SIO Festival Berlin",
+    sub: "Kulturbrauerei, Berlin · 28.12.2024 · Aufgelegt",
     images: [],
   },
 };
