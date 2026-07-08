@@ -74,7 +74,7 @@ const EVENT_GALLERIES = {
   },
   ibiza: {
     title: "Ibiza",
-    sub: "Balearen, Spanien · Besucht",
+    sub: "Ushuaia, Ibiza · Besucht",
     images: [],
   },
   "amsterdam-music-festival": {
