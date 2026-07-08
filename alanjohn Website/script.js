@@ -174,74 +174,76 @@ const onScroll = () => {
 };
 window.addEventListener("scroll", onScroll, { passive: true });
 
-// Photo lightbox for past events.
-// Bilder hinzufügen: einfach den passenden "images"-Array unten befüllen,
-// z. B. images: ["images/events/tomorrowland-1.jpg", "images/events/tomorrowland-2.jpg"]
+// Photo/video lightbox for past events.
+// Bilder/Videos hinzufügen: Datei in images/events/ ablegen, mit dem Gallery-Key
+// als Namen (z. B. gardeneden-2026-1.jpg, gardeneden-2026-2.mp4), und den Pfad
+// unten im passenden "media"-Array ergänzen. Unterstützte Formate: jpg/png/webp
+// für Fotos, mp4/webm/mov für Videos.
 const EVENT_GALLERIES = {
   "gardeneden-2026": {
     title: "GardenEden",
     sub: "Goldenstedt · 30.05.2026 · Aufgelegt",
-    images: [],
+    media: [],
   },
   "studi-party-ritter-butzke-apr26": {
     title: "Studi Party",
     sub: "Ritter Butzke (Aqua Höfe), Berlin · 25.04.2026 · Aufgelegt",
-    images: [],
+    media: [],
   },
   "studi-party-festsaal-kreuzberg": {
     title: "Studi Party",
     sub: "Festsaal Kreuzberg, Berlin · 14.03.2026 · Aufgelegt",
-    images: [],
+    media: [],
   },
   "the-sharp-london": {
     title: "The Sharp",
     sub: "London · 06.02.2026 · Aufgelegt",
-    images: [],
+    media: [],
   },
   "studi-party-ritter-butzke-dec25": {
     title: "Studi Party",
     sub: "Ritter Butzke (Aqua Höfe), Berlin · 28.12.2025 · Aufgelegt",
-    images: [],
+    media: [],
   },
   "hertha-bsc-party": {
     title: "Hertha BSC Party",
     sub: "Berlin · 09.12.2025 · Aufgelegt",
-    images: [],
+    media: [],
   },
   "kinderparty-bergwerk": {
     title: "Kinderparty",
     sub: "Club Bergwerk, Potsdam · 18.10.2025 · Aufgelegt",
-    images: [],
+    media: [],
   },
   "sommerparty-hangelsberg": {
     title: "Sommerparty",
     sub: "Hangelsberg · 25.07.2025 · Aufgelegt",
-    images: [],
+    media: [],
   },
   "abi-ball-hamburg": {
     title: "Abi Ball",
     sub: "Sportschule, Hamburg · 19.07.2025 · Aufgelegt",
-    images: [],
+    media: [],
   },
   "gardeneden-2025": {
     title: "GardenEden",
     sub: "Goldenstedt · 17.05.2025 · Aufgelegt",
-    images: [],
+    media: [],
   },
   "sommerparty-lindenpark": {
     title: "Sommerparty",
     sub: "Lindenpark, Potsdam · 11.05.2025 · Aufgelegt",
-    images: [],
+    media: [],
   },
   "winterparty-lindenpark": {
     title: "Winterparty",
     sub: "Lindenpark, Potsdam · 08.02.2025 · Aufgelegt",
-    images: [],
+    media: [],
   },
   "sio-festival-berlin": {
     title: "SIO Festival Berlin",
     sub: "Kulturbrauerei, Berlin · 28.12.2024 · Aufgelegt",
-    images: [],
+    media: [],
   },
 };
 
@@ -259,18 +261,28 @@ function openLightbox(key) {
   lightboxSub.textContent = entry.sub;
   lightboxGallery.innerHTML = "";
 
-  if (entry.images.length === 0) {
+  if (entry.media.length === 0) {
     const placeholder = document.createElement("p");
     placeholder.className = "lightbox-empty";
-    placeholder.textContent = "Fotos folgen bald.";
+    placeholder.textContent = "Fotos & Videos folgen bald.";
     lightboxGallery.appendChild(placeholder);
   } else {
-    entry.images.forEach((src) => {
-      const img = document.createElement("img");
-      img.src = src;
-      img.alt = entry.title;
-      img.loading = "lazy";
-      lightboxGallery.appendChild(img);
+    const videoExt = /\.(mp4|webm|mov)$/i;
+    entry.media.forEach((src) => {
+      if (videoExt.test(src)) {
+        const video = document.createElement("video");
+        video.src = src;
+        video.controls = true;
+        video.playsInline = true;
+        video.preload = "metadata";
+        lightboxGallery.appendChild(video);
+      } else {
+        const img = document.createElement("img");
+        img.src = src;
+        img.alt = entry.title;
+        img.loading = "lazy";
+        lightboxGallery.appendChild(img);
+      }
     });
   }
 
