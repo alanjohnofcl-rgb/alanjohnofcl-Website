@@ -316,6 +316,14 @@ a { color: inherit; text-decoration: none; }
   color: var(--muted);
   margin-top: 6px;
 }
+.event-date--full {
+  min-width: 78px;
+  white-space: nowrap;
+}
+.event-date--full .d {
+  font-size: 1.15rem;
+  letter-spacing: 0.01em;
+}
 .event-info { flex: 1; display: flex; flex-direction: column; gap: 4px; }
 .event-info strong {
   font-family: var(--display);
