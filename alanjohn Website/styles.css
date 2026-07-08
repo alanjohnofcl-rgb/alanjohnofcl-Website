@@ -329,6 +329,15 @@ a { color: inherit; text-decoration: none; }
   text-transform: uppercase;
   letter-spacing: 0.2em;
 }
+.event-tag {
+  display: inline-block;
+  width: fit-content;
+  margin-top: 2px;
+  padding: 2px 8px;
+  border: 1px solid var(--line);
+  font-size: 0.56rem !important;
+  letter-spacing: 0.18em !important;
+}
 .event-cta {
   font-family: var(--meta);
   text-transform: uppercase;
