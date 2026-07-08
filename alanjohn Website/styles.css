@@ -222,6 +222,21 @@ a { color: inherit; text-decoration: none; }
   border: 1px solid var(--line);
 }
 .video-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.video-thumb { position: absolute; inset: 0; display: block; }
+.video-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s, filter 0.4s; filter: brightness(0.75); }
+.video-thumb:hover img { transform: scale(1.03); filter: brightness(0.55); }
+.video-play {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  display: grid; place-items: center;
+  width: 76px; height: 76px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-size: 1.5rem;
+  padding-left: 6px;
+  transition: transform 0.25s, background 0.25s;
+}
+.video-thumb:hover .video-play { transform: translate(-50%, -50%) scale(1.08); background: var(--accent-dim); }
 
 .platforms {
   margin-top: 24px;
