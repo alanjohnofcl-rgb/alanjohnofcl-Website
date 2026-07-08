@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="de" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard | Alan John</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="dashboard.css" />
+</head>
+<body class="locked">
+  <div class="lock-overlay" id="dashLock">
+    <form class="lock-box" id="lockForm">
+      <p class="eyebrow">Geschützter Bereich</p>
+      <h2>PIN eingeben</h2>
+      <input
+        type="password"
+        inputmode="numeric"
+        pattern="[0-9]*"
+        autocomplete="off"
+        maxlength="6"
+        id="lockInput"
+        aria-label="6-stellige PIN"
+      />
+      <button type="submit" class="btn-unlock">Entsperren</button>
+      <p class="lock-error" id="lockError" hidden>Falsche PIN.</p>
+    </form>
+  </div>
+
+  <header class="dash-header" id="dashHeader" hidden>
+    <div>
+      <p class="eyebrow">Alan John</p>
+      <h1>Website-Dashboard</h1>
+    </div>
+    <div class="live-badge" id="liveBadge">
+      <span class="live-dot" aria-hidden="true"></span>
+      <span class="live-count" id="liveCount">–</span>
+      <span class="live-label">live gerade jetzt</span>
+    </div>
+  </header>
+
+  <main class="dash-main" id="dashMain" hidden>
+    <section class="tiles" id="tiles" aria-label="Übersicht">
+      <div class="tile">
+        <p class="tile-label">Gesamt</p>
+        <p class="tile-value" id="tTotalViews">–</p>
+        <p class="tile-sub"><span id="tTotalVisitors">–</span> Besucher</p>
+      </div>
+      <div class="tile">
+        <p class="tile-label">Heute</p>
+        <p class="tile-value" id="tTodayViews">–</p>
+        <p class="tile-sub"><span id="tTodayVisitors">–</span> Besucher</p>
+      </div>
+      <div class="tile">
+        <p class="tile-label">Letzte 7 Tage</p>
+        <p class="tile-value" id="tWeekViews">–</p>
+        <p class="tile-sub"><span id="tWeekVisitors">–</span> Besucher</p>
+      </div>
+    </section>
+
+    <section class="panel" aria-label="Verlauf">
+      <div class="panel-head">
+        <h2>Aufrufe &amp; Besucher · letzte 30 Tage</h2>
+        <div class="panel-actions">
+          <span class="legend">
+            <span class="legend-item"><i style="background:var(--series-1)"></i>Aufrufe</span>
+            <span class="legend-item"><i style="background:var(--series-2)"></i>Besucher</span>
+          </span>
+          <button type="button" class="table-toggle" id="toggleTimeseriesTable">Tabelle anzeigen</button>
+        </div>
+      </div>
+      <div class="chart-wrap" id="chartWrap">
+        <svg id="chart" role="img" aria-label="Aufrufe und Besucher der letzten 30 Tage"></svg>
+        <div class="tooltip" id="tooltip" hidden></div>
+      </div>
+      <div class="table-wrap" id="timeseriesTableWrap" hidden>
+        <table>
+          <thead><tr><th>Datum</th><th>Aufrufe</th><th>Besucher</th></tr></thead>
+          <tbody id="timeseriesTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="breakdowns">
+      <div class="panel">
+        <div class="panel-head"><h2>Top Seiten</h2></div>
+        <div class="bar-list" id="breakdownPath"></div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><h2>Herkunft (Referrer)</h2></div>
+        <div class="bar-list" id="breakdownReferrer"></div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><h2>Geräte</h2></div>
+        <div class="bar-list" id="breakdownDevice"></div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><h2>Browser</h2></div>
+        <div class="bar-list" id="breakdownBrowser"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="dashboard-lock.js"></script>
+</body>
+</html>
