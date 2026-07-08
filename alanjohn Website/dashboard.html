@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard | Alan John</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #000000;
+      --surface: #0a0a0a;
+      --surface-2: #101010;
+      --line: rgba(255, 255, 255, 0.12);
+      --text: #f2f0ec;
+      --muted: #86837c;
+      --accent: #e0281c;
+      --accent-dim: #b31f16;
+      --radius: 2px;
+      --meta: "Inter", system-ui, sans-serif;
+      --display: "Cormorant Garamond", Georgia, serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--meta);
+      font-weight: 300;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .brand {
+      font-family: var(--display);
+      letter-spacing: 0.04em;
+      font-size: 1.4rem;
+      text-align: center;
+      margin-bottom: 28px;
+    }
+    .card {
+      width: 100%;
+      max-width: 400px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 36px 32px;
+    }
+    .card h1 {
+      font-family: var(--display);
+      font-weight: 500;
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+    }
+    .card p.hint {
+      color: var(--muted);
+      font-size: 0.85rem;
+      line-height: 1.5;
+      margin-bottom: 24px;
+    }
+    label {
+      display: block;
+      text-transform: uppercase;
+      letter-spacing: 0.28em;
+      font-size: 0.62rem;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    input[type="email"] {
+      width: 100%;
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      color: var(--text);
+      padding: 12px 14px;
+      font-family: var(--meta);
+      font-size: 0.95rem;
+      margin-bottom: 18px;
+    }
+    input[type="email"]:focus { outline: none; border-color: var(--accent); }
+    button {
+      width: 100%;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius);
+      padding: 13px 14px;
+      font-family: var(--meta);
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button:hover { background: var(--accent-dim); }
+    button:disabled { opacity: 0.5; cursor: default; }
+    button.secondary {
+      background: transparent;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      margin-top: 12px;
+    }
+    button.secondary:hover { background: var(--surface-2); color: var(--text); }
+    .msg {
+      margin-top: 16px;
+      font-size: 0.82rem;
+      line-height: 1.5;
+    }
+    .msg.error { color: var(--accent); }
+    .msg.success { color: #7fd88f; }
+    .dashboard {
+      width: 100%;
+      max-width: 720px;
+    }
+    .dashboard-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .dashboard-head .who {
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+    .placeholder {
+      border: 1px dashed var(--line);
+      border-radius: var(--radius);
+      padding: 40px 24px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+
+  <!-- LOGIN -->
+  <div class="card" id="loginCard">
+    <div class="brand">ALAN&nbsp;JOHN</div>
+    <h1>Dashboard-Login</h1>
+    <p class="hint">Gib deine E-Mail-Adresse ein. Du bekommst einen Login-Link von Supabase zugeschickt – kein Passwort nötig.</p>
+    <form id="loginForm">
+      <label for="email">E-Mail</label>
+      <input type="email" id="email" name="email" required placeholder="deine@mail.de" autocomplete="email" />
+      <button type="submit" id="loginBtn">Login-Link senden</button>
+    </form>
+    <div class="msg" id="loginMsg"></div>
+  </div>
+
+  <!-- DASHBOARD (nach Login) -->
+  <div class="dashboard hidden" id="dashboardView">
+    <div class="dashboard-head">
+      <div class="brand" style="margin-bottom:0;">ALAN&nbsp;JOHN · Dashboard</div>
+      <div>
+        <span class="who" id="whoAmI"></span>
+        <button class="secondary" id="logoutBtn" style="width:auto; margin-top:0; margin-left:12px; display:inline-block; padding:8px 16px;">Logout</button>
+      </div>
+    </div>
+    <div class="placeholder">
+      Login funktioniert ✅<br />
+      Live-Statistiken (Seitenaufrufe, Klicks, Besucher gerade online) folgen im nächsten Schritt.
+    </div>
+  </div>
+
+  <script type="module">
+    import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+    import { SUPABASE_URL, SUPABASE_ANON_KEY, OWNER_EMAIL } from "./supabase-config.js";
+
+    const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    const loginCard = document.getElementById("loginCard");
+    const dashboardView = document.getElementById("dashboardView");
+    const loginForm = document.getElementById("loginForm");
+    const loginBtn = document.getElementById("loginBtn");
+    const loginMsg = document.getElementById("loginMsg");
+    const whoAmI = document.getElementById("whoAmI");
+    const logoutBtn = document.getElementById("logoutBtn");
+
+    function showLogin() {
+      loginCard.classList.remove("hidden");
+      dashboardView.classList.add("hidden");
+    }
+
+    function showDashboard(email) {
+      loginCard.classList.add("hidden");
+      dashboardView.classList.remove("hidden");
+      whoAmI.textContent = email;
+    }
+
+    async function handleSession(session) {
+      if (!session) {
+        showLogin();
+        return;
+      }
+      const email = session.user.email;
+      if (email?.toLowerCase() !== OWNER_EMAIL.toLowerCase()) {
+        loginMsg.textContent = `Kein Zugriff für ${email}. Diese Seite ist nur für ${OWNER_EMAIL} freigegeben.`;
+        loginMsg.className = "msg error";
+        await supabase.auth.signOut();
+        showLogin();
+        return;
+      }
+      showDashboard(email);
+    }
+
+    loginForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const email = document.getElementById("email").value.trim();
+      loginBtn.disabled = true;
+      loginMsg.textContent = "Sende Login-Link …";
+      loginMsg.className = "msg";
+
+      const { error } = await supabase.auth.signInWithOtp({
+        email,
+        options: { emailRedirectTo: window.location.href.split("#")[0] },
+      });
+
+      loginBtn.disabled = false;
+      if (error) {
+        loginMsg.textContent = "Fehler: " + error.message;
+        loginMsg.className = "msg error";
+      } else {
+        loginMsg.textContent = `Login-Link an ${email} gesendet. Bitte E-Mail-Postfach öffnen und Link anklicken.`;
+        loginMsg.className = "msg success";
+      }
+    });
+
+    logoutBtn.addEventListener("click", async () => {
+      await supabase.auth.signOut();
+      showLogin();
+    });
+
+    supabase.auth.onAuthStateChange((_event, session) => {
+      handleSession(session);
+    });
+
+    const { data: { session } } = await supabase.auth.getSession();
+    handleSession(session);
+  </script>
+</body>
+</html>
