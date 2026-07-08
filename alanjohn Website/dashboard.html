@@ -9,8 +9,26 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="dashboard.css" />
 </head>
-<body>
-  <header class="dash-header">
+<body class="locked">
+  <div class="lock-overlay" id="dashLock">
+    <form class="lock-box" id="lockForm">
+      <p class="eyebrow">Geschützter Bereich</p>
+      <h2>PIN eingeben</h2>
+      <input
+        type="password"
+        inputmode="numeric"
+        pattern="[0-9]*"
+        autocomplete="off"
+        maxlength="6"
+        id="lockInput"
+        aria-label="6-stellige PIN"
+      />
+      <button type="submit" class="btn-unlock">Entsperren</button>
+      <p class="lock-error" id="lockError" hidden>Falsche PIN.</p>
+    </form>
+  </div>
+
+  <header class="dash-header" id="dashHeader" hidden>
     <div>
       <p class="eyebrow">Alan John</p>
       <h1>Website-Dashboard</h1>
@@ -22,7 +40,7 @@
     </div>
   </header>
 
-  <main class="dash-main">
+  <main class="dash-main" id="dashMain" hidden>
     <section class="tiles" id="tiles" aria-label="Übersicht">
       <div class="tile">
         <p class="tile-label">Gesamt</p>
@@ -84,7 +102,6 @@
     </section>
   </main>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
-  <script src="dashboard.js"></script>
+  <script src="dashboard-lock.js"></script>
 </body>
 </html>
