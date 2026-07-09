@@ -166,6 +166,32 @@ function escapeHtml(str) {
 
 loadUpcomingEvents();
 
+// Mobile nav menu toggle
+const navToggle = document.getElementById("navToggle");
+const navLinks = document.getElementById("navLinks");
+if (navToggle && navLinks) {
+  const closeMenu = () => {
+    navToggle.setAttribute("aria-expanded", "false");
+    navLinks.classList.remove("open");
+  };
+
+  navToggle.addEventListener("click", () => {
+    const isOpen = navToggle.getAttribute("aria-expanded") === "true";
+    navToggle.setAttribute("aria-expanded", String(!isOpen));
+    navLinks.classList.toggle("open", !isOpen);
+  });
+
+  navLinks.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMenu));
+
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest(".nav")) closeMenu();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeMenu();
+  });
+}
+
 // Subtle nav background on scroll
 const nav = document.querySelector(".nav");
 const onScroll = () => {
